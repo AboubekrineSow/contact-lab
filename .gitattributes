@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+*.jar binary
+*.png binary
+*.ico binary
+
+# npm lockfile: let git manage it, but keep LF
+package-lock.json text eol=lf
