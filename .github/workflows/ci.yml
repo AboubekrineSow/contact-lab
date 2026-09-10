@@ -56,7 +56,10 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - run: npm ci
+      # `npm ci` rejects the lockfile: Angular 18.2 tooling pulls both chokidar@4
+      # (build) and chokidar@3 (karma), a tree npm's install/ci resolvers disagree
+      # on. `npm install` resolves it fine and the build/tests are unaffected.
+      - run: npm install --no-audit --no-fund
 
       - name: Check formatting
         run: npm run format:check
